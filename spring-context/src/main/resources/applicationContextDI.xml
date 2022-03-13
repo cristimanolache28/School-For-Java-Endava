@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- define dependedency helper -->
+    <bean id="myFortuneService"
+          class="com.lov2code.ioc.dependencyinjection.HappyFortuneService">
+    </bean>
+
+    <!-- Inject the dependency / helper using "constructor injection"-->
+    <bean id="myBaseballCoachBean"
+        class="com.lov2code.ioc.dependencyinjection.BaseballCoach">
+        <!-- set up cunstructor injection -->
+        <constructor-arg ref="myFortuneService"></constructor-arg>
+    </bean>
+
+    <!-- Inject the dependency / helper using "constructor injection"-->
+    <bean id="myTrackCoachBean"
+          class="com.lov2code.ioc.dependencyinjection.TrackCoach">
+        <!-- set up cunstructor injection -->
+        <constructor-arg ref="myFortuneService"></constructor-arg>
+    </bean>
+
+    <!-- Inject DI in constructor -->
+    <bean id="myCricketCoachBean"
+          class="com.lov2code.ioc.dependencyinjection.CricketCoach">
+        <!-- set up setter injection -->
+        <property name="fortuneService" ref="myFortuneService"></property>
+
+        <!-- add values for variables -->
+        <property name="emailAddress" value="cristianmanolache@gmail.com" />
+        <property name="team" value="Endava Team"/>
+    </bean>
+
+</beans>
+
+<!--The id is like an alias-->
+<!--Fully qualified class name of implementation class-->

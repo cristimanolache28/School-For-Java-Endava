@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-context</module>
+        <module>rest-services</module>
     </modules>
 
     <parent>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- dependency -->
+    <bean id="myFortuneService"
+        class="com.lov2code.ioc.randomFortuneChallenger.RandomFortuneService">
+    </bean>
+
+    <bean id="myGolfCoach"
+          class="com.lov2code.ioc.randomFortuneChallenger.GolfCoach">
+
+        <!-- set up constructor injection -->
+        <constructor-arg ref="myFortuneService"></constructor-arg>
+    </bean>
+
+</beans>

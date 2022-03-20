@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.collections;
+package com.endava.part1.collections;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.util;
+package com.endava.part1.util;
 
 import java.time.LocalDate;
 import java.time.Month;

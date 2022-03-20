@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.generics;
+package com.endava.part1.generics;
 
 public class MyGenericWrapper<T> {
     private T value;

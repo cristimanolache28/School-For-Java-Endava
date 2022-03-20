@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.util.vehicles;
+package com.endava.part1.util.vehicles;
 
 public interface Vehicle {
     // Please don't chage this

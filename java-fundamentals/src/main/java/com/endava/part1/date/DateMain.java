@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.date;
+package com.endava.part1.date;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;

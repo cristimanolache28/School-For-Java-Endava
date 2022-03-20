@@ -71,35 +71,44 @@ public class UserDataSource {
     // <---------- TO DO ---------->
 
     // Get the full names for all users
-    public List<String> getFullNames(){
+    public List<User> getFullNames(){
         return List.of();
     }
 
+
     // Get the job of the oldest user
     public String getJobOfTheOldestUser(){
-//        String str = users.stream()
-//                .map(User::getJob)
-//                .sorted(Comparator.naturalOrder());
-
-        return "";
+        String oldestPersJob = users.stream()
+                .sorted((u1, u2) -> Integer.compare(u2.getAge(), u1.getAge()))
+                .findFirst()
+                .map(User::getJob)
+                .get();
+        return oldestPersJob;
     }
 
     // Get user (distinct) jobs sorted alphabetically
     public Set<String> getAllUserJobsSorted(){
-        // your code here
-        return Set.of();
+        Set<String> list = users.stream()
+                .map(User::getJob)
+                .collect(Collectors.toSet());
+        return list;
     }
 
     // Get all users and change their job to 'unemployed' if their age is <= 18
     public List<User> getAllUsersAndChangeTheJobForYoungerOnes(){
-        // your code here
-        return List.of();
+        List<User> list = users.stream()
+                .filter(u -> u.getAge() <= 18)
+                .peek(u -> u.setJob("unemployed"))
+                .collect(Collectors.toList( ));
+        return list;
     }
 
     // Find user by first name - throw RuntimeException if not found
     public User findByFirstName(String firstName){
-        // your code here
-        return new User();
+        return users.stream()
+                .filter(u -> u.getFirstName().equals(firstName))
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
     }
 
     // Check if all users are older than the specified age

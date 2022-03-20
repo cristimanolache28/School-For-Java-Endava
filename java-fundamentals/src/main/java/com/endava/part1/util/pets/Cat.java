@@ -1,4 +1,4 @@
-package com.endava.java_fundamentals.part1.util.pets;
+package com.endava.part1.util.pets;
 
 public class Cat implements Pet{
     private String name;

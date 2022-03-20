@@ -1,6 +1,6 @@
-package com.endava.java_fundamentals.part1.generics;
+package com.endava.part1.generics;
 
-import com.endava.java_fundamentals.part1.util.pets.Pet;
+import com.endava.part1.util.pets.Pet;
 
 import java.util.List;
 

@@ -1,0 +1,20 @@
+polimorfism - abilitatea unui obiect de a avea mai multe forme
+
+compare() returneaza: -1 daca primul numar este mai mic
+                     1 daca primul numar este mai mare
+                     0 daca sunt egale
+
+? -> wildcard
+
+<? extends Number> -> extends permite sub tipuri ale acelui tip.
+<? super Number> -> super accepta super tiperi/clase.
+? inseamna ca tipul nu este cunoscut.
+
+Colectiile sunt generice sunt derivate din Generics
+
+put() -ul din map face un update. In caz ca avem doua valori cu aceasi cheie, se va seta cea de a doua valoare
+
+isPresent() method we can check whether the particular Optional object(or instance) is empty or no-empty.
+There is another method present in the Optional class, which only executes if the given Optional object is non-empty, the method is ifPresent().
+ /* ifPresent() method: It executes only if the given Optional
+          * object is non-empty.

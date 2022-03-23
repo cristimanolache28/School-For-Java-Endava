@@ -1,7 +1,10 @@
 package com.endava.part2.datasource;
 
+import com.endava.part2.exception.UserNotFoundException;
 import com.endava.part2.model.User;
 
+import javax.swing.text.html.Option;
+import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -29,9 +32,10 @@ public class UserDataSource {
         return users;
     }
 
-    public Optional<User> findById(int id){
-        Optional<User> user = users.stream().filter(u -> u.getId() == id).findFirst();
-        return user;
+    public Optional<User> findById(int id) {
+        return users.stream()
+                        .filter(u -> u.getId() == id)
+                        .findFirst();
     }
 
     public String getUsersNamesWithAgeGreaterThanThirty(){
@@ -71,19 +75,21 @@ public class UserDataSource {
     // <---------- TO DO ---------->
 
     // Get the full names for all users
-    public List<User> getFullNames(){
-        return List.of();
+//    public List<User> getFullNames(){
+    public void getFullNames(){
+         users.stream()
+                .filter(user -> user.getFirstName() != null)
+                .filter(user -> user.getLastName() != null)
+                .forEach(user -> System.out.println(user.getFirstName() + " " + user.getLastName()));
     }
 
 
     // Get the job of the oldest user
     public String getJobOfTheOldestUser(){
-        String oldestPersJob = users.stream()
-                .sorted((u1, u2) -> Integer.compare(u2.getAge(), u1.getAge()))
-                .findFirst()
+        return users.stream()
+                .max(Comparator.comparingInt(User::getAge))
                 .map(User::getJob)
-                .get();
-        return oldestPersJob;
+                .orElseThrow();
     }
 
     // Get user (distinct) jobs sorted alphabetically
@@ -114,29 +120,50 @@ public class UserDataSource {
     // Check if all users are older than the specified age
     public boolean areAllUsersOlderThan(int age){
         // your code here - please try with allMatch/noneMatch
-        return false;
+        return users.stream()
+                .allMatch(u -> u.getAge() > age);
     }
 
     // Add a new user - if there is a user with the same id, don't add and throw a RuntimeException
-    public void addUser(User user){
+    public void addUser(User newUser){
         // your code here - HINT: use ifPresent() method from Optional
+        for (int i = 0; i < users.size(); i++) {
+            if (newUser.getId() != users.get(i).getId()) {
+                users.add(newUser);
+                System.out.println("User was add in list");
+                break;
+            }
+            else {
+                throw new InvalidParameterException("Error");
+            }
+        }
     }
+
 
     // For all students (user.job = "student"), change the job to "graduate" and add 5 years to their age
     public void changeAllStudentsJobsAndAges(){
-        // your code here
+        users.stream()
+                .filter(user -> user.getJob().equals("student"))
+                .peek(user -> user.setJob("graduate"))
+                .peek(user -> user.setAge(user.getAge() + 5))
+                .forEach(System.out::println);
     }
 
     // Count users that have the given Job
     public int countUsersHavingTheSpecifiedJob(String job){
-        // your code here
-        return 0;
+        return (int) users.stream()
+                .filter(user -> user.getJob() == job)
+                .count();
     }
 
     // Get a map where the key is the user id and the value is the User object itself
     public Map<Integer, User> getMapOfUsers(){
-        // your code here
-        return Map.of();
+        Map<Integer, User> list = new HashMap<>();
+        users.stream()
+                .filter(user -> list.size() < users.size() )
+                .peek(user -> list.put(user.getId(), user))
+                .collect(Collectors.toList());
+        return list;
     }
 
     // Get a predicate for filtering by the given name - applies to both firstName and lastName

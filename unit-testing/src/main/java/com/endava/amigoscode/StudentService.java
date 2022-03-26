@@ -1,11 +1,9 @@
-package com.endava.student;
+package com.endava.amigoscode;
 
-import com.endava.student.exception.BadRequestException;
-import com.endava.student.exception.StudentNotFoundException;
+import com.endava.amigoscode.exception.BadRequestException;
+import com.endava.amigoscode.exception.StudentNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 

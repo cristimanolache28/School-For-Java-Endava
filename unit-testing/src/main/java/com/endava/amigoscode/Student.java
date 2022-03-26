@@ -1,4 +1,4 @@
-package com.endava.student;
+package com.endava.amigoscode;
 
 import lombok.*;
 

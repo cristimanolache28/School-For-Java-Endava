@@ -1,4 +1,4 @@
-package com.endava.student.exception;
+package com.endava.amigoscode.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

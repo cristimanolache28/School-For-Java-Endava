@@ -18,3 +18,13 @@ isPresent() method we can check whether the particular Optional object(or instan
 There is another method present in the Optional class, which only executes if the given Optional object is non-empty, the method is ifPresent().
  /* ifPresent() method: It executes only if the given Optional
           * object is non-empty.
+
+Intermediate Operations:
+    - these methods should be used to transform one stream to another stream
+    - they only return another stream
+    - filter(), map(), flatMap(), sorted(), distinct()
+
+Terminal Operations
+    - these methods are used to produce result
+    - they return final result
+    - collect(), forEach(), count(), toArray()

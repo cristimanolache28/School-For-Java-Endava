@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.*;
+
 public class UserDataSource {
 
     private List<User> users = new ArrayList<>();
@@ -34,8 +36,8 @@ public class UserDataSource {
 
     public Optional<User> findById(int id) {
         return users.stream()
-                        .filter(u -> u.getId() == id)
-                        .findFirst();
+                .filter(u -> u.getId() == id)
+                .findFirst();
     }
 
     public String getUsersNamesWithAgeGreaterThanThirty(){
@@ -81,6 +83,12 @@ public class UserDataSource {
                 .filter(user -> user.getFirstName() != null)
                 .filter(user -> user.getLastName() != null)
                 .forEach(user -> System.out.println(user.getFirstName() + " " + user.getLastName()));
+    }
+
+    public List<String> getFullNames2(){
+        return users.stream()
+                 .map(user -> user.getFirstName() + " " + user.getLastName())
+                 .collect(toList());
     }
 
 
@@ -139,6 +147,24 @@ public class UserDataSource {
         }
     }
 
+    public void addUser2(User newUser){
+        // your code here - HINT: use ifPresent() method from Optional
+            users.stream()
+                    .filter(u -> u.getId() == newUser.getId())
+                    .findAny()
+                    .ifPresent(u -> {
+                        throw new RuntimeException("User with id " + newUser.getId() + " already existats");
+                    });
+            users.add(newUser);
+    }
+
+    public void addUser3(User newUser) {
+        if(users.stream().anyMatch(u -> u.getId() == newUser.getId())) {
+            throw new RuntimeException("User with id " + newUser.getId() + "already exists");
+        }
+        users.add(newUser);
+    }
+
 
     // For all students (user.job = "student"), change the job to "graduate" and add 5 years to their age
     public void changeAllStudentsJobsAndAges(){
@@ -168,7 +194,6 @@ public class UserDataSource {
 
     // Get a predicate for filtering by the given name - applies to both firstName and lastName
     public Predicate<User> getPredicateForFilteringByName(String name){
-        // your code here
         return null;
     }
 

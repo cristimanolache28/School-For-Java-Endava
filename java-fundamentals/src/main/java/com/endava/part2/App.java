@@ -4,6 +4,13 @@ import com.endava.part2.datasource.UserDataSource;
 import com.endava.part2.exception.UserNotFoundException;
 import com.endava.part2.model.User;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import static org.testng.Assert.assertTrue;
+
 public class App {
     public static void main(String[] args) {
         UserDataSource userDataSource = new UserDataSource();
@@ -22,7 +29,8 @@ public class App {
 //        System.out.println(userDataSource.getAll());
 //        System.out.println(userDataSource.getAll());
 //        System.out.println(userDataSource.getMapOfUsers());
-        System.out.println(userDataSource.getMapOfUsers());
+//        System.out.println(userDataSource.getMapOfUsers());
 
+        System.out.println(userDataSource.getFullNames2());
     }
 }

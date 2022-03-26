@@ -9,11 +9,9 @@ import java.util.Optional;
 public class OptionalDemo {
     public static void main(String[] args) {
 
-        Customer customer = new Customer(101, "John", null, Arrays.asList("321412", "43242"));
+        Customer customer = new Customer(101, "John", "cristi_9840@yahoo.com", Arrays.asList("321412", "43242"));
 
         // empty
-
-
         Optional<Object> emptyOptional = Optional.empty();
 //        System.out.println(emptyOptional);
 
@@ -23,10 +21,10 @@ public class OptionalDemo {
 
         //ofNullable
         Optional<String> emailOptional2 = Optional.ofNullable(customer.getEmail());
-//        if (emailOptional2.isPresent()) {
-//            System.out.println(emailOptional2.get());
-//        }
+        if (emailOptional2.isPresent()) {
+            System.out.println(emailOptional2.get());
+        }
 //          System.out.println(emailOptional2.orElse("dafault@gamil.com"));
-        System.out.println(emailOptional2.orElseThrow(() -> new IllegalArgumentException("email not present")));
+//        System.out.println(emailOptional2.orElseThrow(() -> new IllegalArgumentException("email not present")));
     }
 }
